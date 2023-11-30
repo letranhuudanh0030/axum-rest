@@ -4,8 +4,8 @@ use derive_more::From;
 use crate::model;
 
 #[derive(Debug, From)]
+
 pub enum Error {
-    // -- Modules
     #[from]
     Model(model::Error),
 }

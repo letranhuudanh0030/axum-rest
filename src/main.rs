@@ -7,16 +7,17 @@ mod config;
 mod controller;
 mod error;
 mod middleware;
-mod migration;
 mod model;
 mod repository;
 mod route;
 mod service;
 mod utils;
 
+use crate::model::AppState;
+
 pub use self::config::database;
 pub use self::error::{Error, Result};
-pub use self::route::route_static;
+pub use self::route::{route_static, routes};
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -28,12 +29,13 @@ async fn main() -> Result<()> {
         .with_env_filter(EnvFilter::from_default_env())
         .init();
 
-    // region:    --- Database
-    let _conn = database::connect_db().await;
-    // endRegion: --- Database
+    // Initialize ModelManager.
+    let state = AppState::new().await?;
 
     // region:    --- Define route
-    let routes_all = Router::new().fallback_service(route_static::serve_dir());
+    let routes_all = Router::new()
+        .merge(routes(state.clone()))
+        .fallback_service(route_static::serve_dir());
     // endRegion: --- Define route
 
     // region:    --- Start server

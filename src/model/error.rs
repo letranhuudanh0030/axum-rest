@@ -1,13 +1,22 @@
-pub type Result<T> = core::result::Result<T, Error>;
 use derive_more::From;
+use serde::Serialize;
 
-use crate::model;
+use crate::config;
 
-#[derive(Debug, From)]
+pub type Result<T> = core::result::Result<T, Error>;
+
+#[derive(Debug, Serialize, From)]
 pub enum Error {
-    // -- Modules
+    EntityNotFound {
+        entity: &'static str,
+        id: i64,
+    },
+    ListLimitOverMax {
+        max: i64,
+        actual: i64,
+    },
     #[from]
-    Model(model::Error),
+    Config(config::error::Error),
 }
 
 // region:    --- Error Boilerplate

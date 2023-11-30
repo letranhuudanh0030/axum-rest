@@ -21,7 +21,7 @@ impl WebConfig {
     fn load_from_env() -> Result<WebConfig> {
         Ok(WebConfig {
             WEB_FOLDER: get_env("SERVICE_WEB_FOLDER")?,
-            DB_URL: get_env("SERVICE_DB_URL")?,
+            DB_URL: get_env("DATABASE_URL")?,
         })
     }
 }

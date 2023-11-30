@@ -1,3 +1,3 @@
-pub mod init;
 pub mod database;
-mod error;
+pub mod error;
+pub mod init;

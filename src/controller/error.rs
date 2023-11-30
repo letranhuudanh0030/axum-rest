@@ -1,14 +1,7 @@
 pub type Result<T> = core::result::Result<T, Error>;
-use derive_more::From;
 
-use crate::model;
-
-#[derive(Debug, From)]
-pub enum Error {
-    // -- Modules
-    #[from]
-    Model(model::Error),
-}
+#[derive(Debug)]
+pub enum Error {}
 
 // region:    --- Error Boilerplate
 impl core::fmt::Display for Error {
