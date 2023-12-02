@@ -1,11 +1,11 @@
 use axum::Router;
 use tokio::net::TcpListener;
+use tower_cookies::CookieManagerLayer;
 use tracing::info;
 use tracing_subscriber::EnvFilter;
 
 mod config;
 mod controller;
-mod error;
 mod middleware;
 mod model;
 mod repository;
@@ -13,14 +13,12 @@ mod route;
 mod service;
 mod utils;
 
-use crate::model::AppState;
-
 pub use self::config::database;
-pub use self::error::{Error, Result};
+pub use self::model::ModelManager;
 pub use self::route::{route_static, routes};
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() {
     tracing_subscriber::fmt()
         .with_max_level(tracing::Level::DEBUG)
         .with_test_writer()
@@ -30,11 +28,12 @@ async fn main() -> Result<()> {
         .init();
 
     // Initialize ModelManager.
-    let state = AppState::new().await?;
+    let mm = ModelManager::new().await.unwrap();
 
     // region:    --- Define route
     let routes_all = Router::new()
-        .merge(routes(state.clone()))
+        .nest("/v1", routes(mm.clone()))
+        .layer(CookieManagerLayer::new())
         .fallback_service(route_static::serve_dir());
     // endRegion: --- Define route
 
@@ -45,5 +44,4 @@ async fn main() -> Result<()> {
         .await
         .unwrap();
     // endRegion: --- Start server
-    Ok(())
 }

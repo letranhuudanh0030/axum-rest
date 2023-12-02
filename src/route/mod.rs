@@ -1,11 +1,15 @@
 use axum::Router;
 
-use crate::model::AppState;
-
 mod cake_route;
-mod error;
+mod login_route;
+
+use crate::ModelManager;
+
 pub mod route_static;
 
-pub fn routes(state: AppState) -> Router {
-    Router::new().with_state(state).merge(cake_route::routes())
+pub fn routes(mm: ModelManager) -> Router {
+    Router::new()
+        .merge(login_route::routes())
+        .nest("/cake", cake_route::routes())
+        .with_state(mm)
 }

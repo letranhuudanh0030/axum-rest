@@ -1,2 +1,2 @@
 pub mod cake_controller;
-mod error;
+pub mod login_controller;

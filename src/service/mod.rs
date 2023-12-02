@@ -1,3 +1,3 @@
-// region:    --- Service
+mod cake_service;
 
-// endRegion: --- Service
+pub use self::cake_service::CakeService;

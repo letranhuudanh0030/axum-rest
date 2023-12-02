@@ -1,3 +1,3 @@
-// region:    --- Repository
+mod cake_repository;
 
-// endRegion: --- Repository
+pub use self::cake_repository::CakeRepository;

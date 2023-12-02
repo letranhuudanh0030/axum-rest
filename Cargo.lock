@@ -837,6 +837,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "entity"
+version = "0.1.0"
+dependencies = [
+ "sea-orm",
+ "serde",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2127,6 +2135,7 @@ dependencies = [
  "base64",
  "derive_more",
  "dotenvy",
+ "entity",
  "migration",
  "sea-orm",
  "sea-orm-migration",
