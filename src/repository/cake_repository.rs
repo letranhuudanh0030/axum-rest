@@ -1,6 +1,6 @@
 use crate::{
     model::cake_model::{CreateCakeModel, UpdateCakeModel},
-    utils::api_error::Error,
+    utils::api_response::Error,
     ModelManager,
 };
 use axum::{extract::Path, Json};

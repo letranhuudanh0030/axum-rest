@@ -3,7 +3,7 @@ use axum::Json;
 use serde_json::{json, Value};
 
 use crate::model::cake_model::{CreateCakeModel, UpdateCakeModel};
-use crate::utils::api_error::{APIResponse, Error};
+use crate::utils::api_response::{APIResponse, Error};
 use crate::ModelManager;
 
 use crate::{model::cake_model::CakeModel, repository::CakeRepository};
@@ -16,12 +16,6 @@ impl CakeService {
         CakeRepository::find_all(mm)
             .await
             .map_err(|_| Error::NO_DATA)
-
-        // let body_response = json!({
-        //     "data": result
-        // });
-
-        // Ok(Json(body_response))
     }
 
     pub async fn get_by_id(mm: &ModelManager, id: Path<i32>) -> Result<CakeModel, Error> {
@@ -33,7 +27,7 @@ impl CakeService {
     pub async fn create(mm: &ModelManager, payload: Json<CreateCakeModel>) -> Result<(), Error> {
         CakeRepository::create(mm, payload)
             .await
-            .map_err(|_| Error::INSERT_FAIL)
+            .map_err(|_| Error::CREATE_FAIL)
     }
 
     pub async fn update(
