@@ -5,7 +5,7 @@ use crate::{
 };
 use axum::{extract::Path, Json};
 use entity::cake::{self, Entity as Cake};
-use sea_orm::{ColumnTrait, DbErr, EntityTrait, QueryFilter, Set};
+use sea_orm::{DbErr, EntityTrait, Set};
 
 use crate::model::cake_model::CakeModel;
 

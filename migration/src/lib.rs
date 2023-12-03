@@ -5,6 +5,7 @@ mod m20231130_000002_create_filling_table;
 mod m20231130_000003_create_fruit_table;
 mod m20231130_000004_create_cake_filling_table;
 mod m20231130_070544_add_primary_key_cake_filling_table;
+mod m20231203_113212_create_user_table;
 
 pub struct Migrator;
 
@@ -17,6 +18,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20231130_000003_create_fruit_table::Migration),
             Box::new(m20231130_000004_create_cake_filling_table::Migration),
             Box::new(m20231130_070544_add_primary_key_cake_filling_table::Migration),
+            Box::new(m20231203_113212_create_user_table::Migration),
         ]
     }
 }

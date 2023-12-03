@@ -1,9 +1,9 @@
 use axum::{routing::post, Router};
 
-use crate::ModelManager;
+use crate::{controller::login_controller, ModelManager};
 
 pub fn routes() -> Router<ModelManager> {
-    Router::new()
-        .route("/login", post(println!("login")))
-        .route("/logout", post(println!("logout")))
+    todo!("login routes")
+    // Router::new().route("/login", post(login_controller::login))
+    // .route("/logout", post(login_controller::logout))
 }

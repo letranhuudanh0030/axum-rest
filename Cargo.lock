@@ -2131,6 +2131,7 @@ name = "rust-rest"
 version = "0.1.0"
 dependencies = [
  "async-std",
+ "async-trait",
  "axum",
  "base64",
  "derive_more",

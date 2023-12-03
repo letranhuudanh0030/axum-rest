@@ -1,5 +1,5 @@
 use crate::{
-    model::cake_model::{CakeModel, CreateCakeModel, UpdateCakeModel},
+    model::cake_model::{CreateCakeModel, UpdateCakeModel},
     service::CakeService,
     utils::api_response::{APIResponse, Info},
     ModelManager,
@@ -9,9 +9,6 @@ use axum::{
     response::IntoResponse,
     Json,
 };
-
-use serde_json::{json, to_value, Value};
-use tracing_subscriber::registry::Data;
 
 pub async fn list(State(mm): State<ModelManager>) -> impl IntoResponse {
     let result = CakeService::get_all(&mm).await;

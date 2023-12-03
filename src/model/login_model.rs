@@ -2,6 +2,6 @@ use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct LoginPayload {
-    username: String,
-    pwd: String,
+    pub username: String,
+    pub pwd: String,
 }

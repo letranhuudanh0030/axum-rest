@@ -1,9 +1,8 @@
 use axum::extract::Path;
 use axum::Json;
-use serde_json::{json, Value};
 
 use crate::model::cake_model::{CreateCakeModel, UpdateCakeModel};
-use crate::utils::api_response::{APIResponse, Error};
+use crate::utils::api_response::Error;
 use crate::ModelManager;
 
 use crate::{model::cake_model::CakeModel, repository::CakeRepository};

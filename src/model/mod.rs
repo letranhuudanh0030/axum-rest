@@ -1,6 +1,7 @@
 use sea_orm::DbErr;
 
 pub mod cake_model;
+pub mod filling_model;
 pub mod login_model;
 
 use crate::database::{new_db_pool, Db};

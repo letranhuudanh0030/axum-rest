@@ -44,3 +44,4 @@ base64 = "0.21.5"
 time = { version = "0.3.30", features = ["formatting", "parsing", "serde"] }
 dotenvy = "0.15.7"
 derive_more = "0.99.17"
+async-trait = "0.1.74"
